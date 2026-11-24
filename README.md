@@ -1,3 +1,30 @@
+# Deploying a Machine Learning Model with FastAPI
+
+**GitHub repository:** https://github.com/rschu87/Deploying-a-Scalable-ML-Pipeline-with-FastAPI
+
+WGU D501 Machine Learning DevOps project. A random forest classifier trained on Census data predicts whether income is above or below $50K, and a FastAPI app serves the predictions.
+
+## Project files
+* `ml/model.py` and `ml/data.py`: training, inference, save/load, metrics and slice functions
+* `train_model.py`: trains the model, saves `model/model.pkl` and `model/encoder.pkl`, and writes `slice_output.txt`
+* `test_ml.py`: unit tests (run with `pytest test_ml.py -v`)
+* `main.py`: the FastAPI app (GET `/` and POST `/data/`)
+* `local_api.py`: sends one GET and one POST to the running API
+* `model_card.md`: the model card
+* `screenshots/`: `continuous_integration.png`, `unit_test.png`, `local_api.png`
+
+## How to run
+```
+conda env create -f environment.yml
+conda activate fastapi
+python train_model.py
+pytest test_ml.py -v
+uvicorn main:app --reload
+python local_api.py   # in a second terminal
+```
+
+---
+
 Working in a command line environment is recommended for ease of use with git and dvc. If on Windows, WSL1 or 2 is recommended.
 
 # Environment Set up (pip or conda)
